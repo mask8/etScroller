@@ -112,6 +112,7 @@
 					var first_touch = {'x': oe.touches[0].pageX, 'y': oe.touches[0].pageY};
 					var last_touch = {'x': oe.touches[0].pageX, 'y': oe.touches[0].pageY};
 					var speed = {'x': 0, 'y': 0};
+					var scrolling = false;
 
 					$content.stop();
 					$vbar.stop();
@@ -128,26 +129,30 @@
 						last_touch = {'x': oevt.touches[0].pageX, 'y': oevt.touches[0].pageY};
 
 
-						if(settings.vscroll) {
-							if (pos.top >= 0 && speed.y < -2) {
-								methods.didTouchEnd();
-								return;
+						if(!scrolling) {
+							if(settings.vscroll) {
+								if (pos.top >= 0 && speed.y < -2) {
+									methods.didTouchEnd();
+									return;
+								}
+								else if (pos.top <= vmin && speed.y > 2) {
+									methods.didTouchEnd();
+									return;
+								}
 							}
-							else if (pos.top <= vmin && speed.y > 2) {
-								methods.didTouchEnd();
-								return;
+	
+							if(settings.hscroll) {
+								if (pos.left >= 0 && speed.x < -2) {
+									methods.didTouchEnd();
+									return;
+								}
+								else if (pos.left <= hmin && speed.x > 2) {
+									methods.didTouchEnd();
+									return;
+								}
 							}
-						}
 
-						if(settings.hscroll) {
-							if (pos.left >= 0 && speed.x < -2) {
-								methods.didTouchEnd();
-								return;
-							}
-							else if (pos.left <= hmin && speed.x > 2) {
-								methods.didTouchEnd();
-								return;
-							}
+							scrolling = true;
 						}
 
 						var cur_top = parseInt(pos.top) - parseInt(first_touch.y) + parseInt(oevt.touches[0].pageY);
@@ -168,19 +173,24 @@
 
 						evt.preventDefault();
 
-						if(settings.vscroll) {
+						var bar_top = -1 *  $wrapper.height() * cur_top / $content.height();
+						var bar_left = -1 *  $wrapper.width() * cur_left / $content.width();
+
+						if(settings.vscroll && settings.hscroll) {
 							$content.css({
-								"top": cur_top + "px"
-							});
-							var bar_top = -1 *  $wrapper.height() * cur_top / $content.height();
-							$vbar.css("top", bar_top + "px");
-						}
-						if(settings.hscroll) {
-							$content.css({
+								"top": cur_top + "px",
 								"left": cur_left + "px"
 							});
-							var bar_left = -1 *  $wrapper.width() * cur_left / $content.width();
+							$vbar.css("top", bar_top + "px");
 							$hbar.css("left", bar_left + "px");
+						}
+						else if(settings.hscroll) {
+							$content.css("left", cur_left + "px");
+							$hbar.css("left", bar_left + "px");
+						}
+						else if(settings.vscroll) {
+							$content.css("top", cur_top + "px");
+							$vbar.css("top", bar_top + "px");
 						}
 					});
 					$("body").bind('touchend', function(evt){
