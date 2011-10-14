@@ -10,7 +10,11 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
    				// Your code here
-   				$(".scroller").etScroller();
+   				$(".scroller").etScroller({
+//					'overflow': true,
+					'hscroll': true,
+					'vscroll': true
+   				});
 			});
 		</script>
 	</head>
@@ -38,18 +42,18 @@
 				<li>jQuery Easing Plugin-1.3 - http://gsgd.co.uk/sandbox/jquery/easing/</li>
 			</ul>
 
-			<h3>Sample</h3>
-			<pre>
-				<div id="scroller" style="width: 200px; height: 200px;">
-					<h1>Welcome!</h1>
-					<img alt="big image inside of div" src="test.png" width="400" height="400" />
-					<p>Hello world</p>
-				</div>
-			</pre>
+			<div id="debug"></div>
+			<div id="debug2"></div>
 
 			<div class="scroller" style="width: 400px; height: 400px; background-color: #ccc;">
 				<h2>Scroll it</h2>
 				<p>
+					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque ultrices facilisis risus. Aenean sollicitudin imperdiet justo. Nam sed nulla sed metus blandit pretium. Morbi odio. Maecenas vestibulum dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam in elit. Nam venenatis urna id diam. Quisque porta. Sed ultricies, sem vel gravida mollis, pede lectus vehicula orci, quis sodales mauris velit vitae dui. Sed tincidunt mauris ut libero. Suspendisse potenti. Praesent adipiscing. Sed sem. Ut non justo. Cras pretium nibh scelerisque nibh hendrerit venenatis.
+				</p>
+				<p>
+					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque ultrices facilisis risus. Aenean sollicitudin imperdiet justo. Nam sed nulla sed metus blandit pretium. Morbi odio. Maecenas vestibulum dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam in elit. Nam venenatis urna id diam. Quisque porta. Sed ultricies, sem vel gravida mollis, pede lectus vehicula orci, quis sodales mauris velit vitae dui. Sed tincidunt mauris ut libero. Suspendisse potenti. Praesent adipiscing. Sed sem. Ut non justo. Cras pretium nibh scelerisque nibh hendrerit venenatis.
+				</p>
+				<p style="width: 600px;">
 					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque ultrices facilisis risus. Aenean sollicitudin imperdiet justo. Nam sed nulla sed metus blandit pretium. Morbi odio. Maecenas vestibulum dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam in elit. Nam venenatis urna id diam. Quisque porta. Sed ultricies, sem vel gravida mollis, pede lectus vehicula orci, quis sodales mauris velit vitae dui. Sed tincidunt mauris ut libero. Suspendisse potenti. Praesent adipiscing. Sed sem. Ut non justo. Cras pretium nibh scelerisque nibh hendrerit venenatis.
 				</p>
 				<p>
