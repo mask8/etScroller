@@ -19,7 +19,9 @@
 				vscroll: true,
 				hscroll: false,
 				hide: false,
-				overflow: false
+				overflow: false,
+				width: null,
+				height: null
 			};
 
 			return this.each(function(){
@@ -40,8 +42,8 @@
 
 				// change overflow settings of this
 				$wrapper.css({
-					'width': $(this).width(),
-					'height': $(this).height(),
+					'width': (settings.width) ? settings.width : $(this).width(),
+					'height': (settings.height) ? settings.height : $(this).height(),
 					'position': 'relative',
 					'z-index': 0
 				});
@@ -76,7 +78,7 @@
 				});
 				if($wrapper.height() >= $content.height() || settings.overflow || !settings.vscroll) {
 					bar_height = $wrapper.height();
-					$vbar.css({height: bar_height + "px", opacity: 0.0});
+					$vbar.css({height: bar_height + "px", 'display': 'none'});
 				}
 				$wrapper.append($vbar);
 
@@ -100,7 +102,7 @@
 				});
 				if($wrapper.width() >= $content.width() || settings.overflow || !settings.hscroll) {
 					bar_width = $wrapper.width();
-					$hbar.css({width: bar_width + "px", opacity: 0.0});
+					$hbar.css({width: bar_width + "px", 'display': 'none'});
 				}
 				$wrapper.append($hbar);
 
@@ -239,7 +241,7 @@
 					vmin = -1 * $content.height() + $wrapper.height();
 					if($wrapper.height() >= $content.height() || settings.overflow || !settings.vscroll) {
 						bar_height = $wrapper.height();
-						$vbar.css({'height': bar_height + "px", opacity: 0.0});
+						$vbar.css({'height': bar_height + "px", 'display': 'none'});
 					}
 
 					bar_width = $wrapper.width() * $wrapper.width() / $content.width();
@@ -247,7 +249,7 @@
 					hmin = -1 * $content.width() + $wrapper.width();
 					if($wrapper.width() >= $content.width() || settings.overflow || !settings.hscroll) {
 						bar_width = $wrapper.width();
-						$hbar.css({'width': bar_width + "px", opacity: 0.0});
+						$hbar.css({'width': bar_width + "px", 'display': 'none'});
 					}
 				});
 
